@@ -7,7 +7,7 @@ function chargerClasse($classname)
 
 spl_autoload_register('chargerClasse');
 
-session_start(); // On appelle session_start() APR�S avoir enregistr� l'autoload.
+session_start(); // On appelle session_start() Aprés avoir enregistré l'autoload.
 
 if (isset($_GET['deconnexion']))
 {
@@ -17,7 +17,7 @@ if (isset($_GET['deconnexion']))
 }
 
 $db = new PDO('mysql:host=localhost;dbname=poo', 'root', '');
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On �met une alerte � chaque fois qu'une requ�te a �chou�.
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requéte a échoué.
 
 $manager = new PersonnagesManager($db);
 
@@ -26,9 +26,9 @@ if (isset($_SESSION['perso'])) // Si la session perso existe, on restaure l'obje
     $perso = $_SESSION['perso'];
 }
 
-if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu cr�er un personnage.
+if (isset($_POST['creer']) && isset($_POST['nom'])) // Si on a voulu créer un personnage.
 {
-    $perso = new Personnages(['nom' => $_POST['nom']]); // On cr�e un nouveau personnage.
+    $perso = new Personnages(['nom' => $_POST['nom']]); // On crée un nouveau personnage.
     
     if (!$perso->nomValide())
     {
@@ -58,7 +58,7 @@ elseif (isset($_POST['utiliser']) && isset($_POST['nom'])) // Si on a voulu util
     }
 }
 
-elseif (isset($_GET['frapper'])) // Si on a cliqu� sur un personnage pour le frapper.
+elseif (isset($_GET['frapper'])) // Si on a cliqué sur un personnage pour le frapper.
 {
     if (!isset($perso))
     {
@@ -76,7 +76,7 @@ elseif (isset($_GET['frapper'])) // Si on a cliqu� sur un personnage pour le f
         {
             $persoAFrapper = $manager->get((int) $_GET['frapper']);
             
-            $retour = $perso->frapper($persoAFrapper); // On stocke dans $retour les �ventuelles erreurs ou messages que renvoie la m�thode frapper.
+            $retour = $perso->frapper($persoAFrapper); // On stocke dans $retour les éventuelles erreurs ou messages que renvoie la méthode frapper.
             
             switch ($retour)
             {
@@ -117,7 +117,7 @@ elseif (isset($_GET['frapper'])) // Si on a cliqu� sur un personnage pour le f
 
     
 <?php
-if (isset($message)) // On a un message � afficher ?
+if (isset($message)) // On a un message à afficher ?
 {
   echo '<p>', $message, '</p>'; // Si oui, on l'affiche.
 }
@@ -174,7 +174,7 @@ else
   </body>
 </html>
 <?php
-if (isset($perso)) // Si on a cr�� un personnage, on le stocke dans une variable session afin d'�conomiser une requ�te SQL.
+if (isset($perso)) // Si on a créé un personnage, on le stocke dans une variable session.
 {
   $_SESSION['perso'] = $perso;
 }
