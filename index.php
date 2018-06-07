@@ -16,7 +16,7 @@ if (isset($_GET['deconnexion']))
     exit();
 }
 
-$db = new PDO('mysql:host=localhost;dbname=poo', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=poo', 'root', ''); // Connection à la Bdd, Je n'est pas ignoré cette ligne sur github car la connection est en localhost donc aucun probléme de faille de sécurité.
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); // On émet une alerte à chaque fois qu'une requéte a échoué.
 
 $manager = new PersonnagesManager($db);
